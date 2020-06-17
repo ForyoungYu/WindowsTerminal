@@ -2,11 +2,55 @@
 
 My windows terminal configfile.
 
+## 安装 Chocolatey
+安装 Chocolatey，只需要在 Windows 系统的命令行工具下面去执行一行命令（cmd），只需要在其中的一个上面安装 Chocolatey 就可以了。你要用管理员的身份去运行命令行工具，不然会遇到权限问题。
+终端下执行。
+```bash
+@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
+```
+安装完成后，在命令行工具的下面，输入：
+```bash
+choco help
+```
+如果出现一些有用的帮助信息，比如 Chocolatey 的版本号，安装到的目录，相关的命令，还有示例等等，这就说明我们已经可以在系统上使用 Chocolatey 了。
+Chocolatey的使用也很简单，使用指令如下：
+```bash
+choco search <keyword>    搜索软件
+choco list <keyword>  跟 search 命令功能类似
+choco install <package1 package2 package3...>  安装软件
+choco install <package>  -version *** 安装指定版本
+choco  uninstall name 卸载软件
+choco version <package>  查看安装包的版本情况
+choco  upgrade <package>   更新某个软件 
+choco list -localonly        查看一下所有安装在本地的包的列表
+choco list -lo       功能同上
+```
+
 ## 安装 Windows Terminal
 
 在安装 Windows Terminal 之前，需要确保 Windows 版本号在 18362 以上。使用搜索功能或访问链接即可到达商店页面。
 在下一步配置之前，你可能想要安装 VSCode 以编辑配置文件。你可能还想安装更纱黑体字体以获取更好的观感。（可跳过）
 下文假设你已成功安装 Windows Terminal。
+## WSL2 安装
+检查 windows 版本
+
+>Windows 10, updated to version 2004, Build 19041 or higher.
+
+开启 "Windows Subsystem for Linux"  
+
+以管理员身份打开 PowerShell，输入如下命令，并重启电脑
+```bash
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+```
+设置 WSL2 为默认
+
+打开 PowerShell，输入如下命令：
+```bash
+wsl --set-default-version 2
+```
+
+## 安装Linux发行版
+打开Microsoft Sotre，搜索Linux，本例选择 Ubuntu 18.04.
 
 ## 美化 Powershell
 
@@ -82,4 +126,12 @@ Windows Terminal的配置文件储存在
             "useAcrylic" : true //使用亚克力效果
         }
     ]
+```
+
+## 安装其他应用
+安装Screenfetch
+```bash
+Install-Module -Name windows-screenfetch
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+Import-Module windows-screenfetch
 ```
